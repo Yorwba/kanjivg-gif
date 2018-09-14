@@ -1,4 +1,6 @@
-#!/usr/bin/env python3
+#!/usr/bin/env python
+
+from __future__ import division
 
 import lxml.etree
 import math
@@ -17,7 +19,7 @@ def create_frames(path_data, frame_size):
     path = svg.path.parse_path(path_data)
     length = path.length()
     duration = math.sqrt(length)/STROKE_SPEED
-    num_frames = math.ceil(duration*FRAME_RATE)
+    num_frames = int(math.ceil(duration*FRAME_RATE))
     frames = []
     previous_point = complex_to_tuple(path.point(0))
 
