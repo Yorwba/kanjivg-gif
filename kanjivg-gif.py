@@ -3,6 +3,7 @@
 import lxml.etree
 import math
 from PIL import Image, ImageDraw
+import subprocess
 import svg.path
 
 STROKE_WIDTH = 4
@@ -46,6 +47,11 @@ def create_gif(svg):
 
     gif = svg[:-4]+'.gif'
     frames[0].save(gif, save_all=True, optimize=True, append_images=frames[1:])
+
+    try:
+        subprocess.Popen(['gifsicle', '--batch', '--optimize', gif])
+    except OSError:
+        pass  # optimization is optional
 
 def main(argv):
     svgs = argv[1:]
