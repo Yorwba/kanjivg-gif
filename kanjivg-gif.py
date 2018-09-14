@@ -51,7 +51,7 @@ def create_gif(svg):
     frames[0].save(gif, save_all=True, optimize=True, append_images=frames[1:])
 
     try:
-        subprocess.Popen(['gifsicle', '--batch', '--optimize', gif])
+        subprocess.Popen(['gifsicle', '--batch', '--optimize=3', gif])
     except OSError:
         pass  # optimization is optional
 
